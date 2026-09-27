@@ -231,3 +231,20 @@ schedule with one lead and parallel sub-agents is 4–8 weeks of continuous work
 ## 6. Progress log
 
 * 2026-09-27: design (this file); genl interface correction `htE_equiv → htE_le`.
+* 2026-09-28 (night):
+  - heights `wp-height-theory`: H1–H3 (absolute heights on `ℚ̄`: extension invariance, local
+    formula, Segre, Galois invariance, root bounds, Northcott over `ℚ̄`); Serre's different
+    bound ported from iut; W8a (sequential compactness in `ℙ¹(ℚ̄_p)^{≤d}`, `ℙ¹(ℂ)`); W8b
+    (every finite place over `p` is `‖τ ·‖^N` for an embedding `τ : F → ℚ̄_p`, `N ≤ [F:ℚ]`);
+    W8c (E-valued places, diagonal subsequences, limit valuation subrings).
+  - heights `wp-height-theory-curve` (depends on belyi `Belyi.CurveField`): W1 (tuple heights
+    `h_s(x)`), **W2 (`A_s ≤ A_t ⇒ h_s ≲ h_t`, the integrality argument)**, W3 at tuple level
+    (invariance under linear equivalence, additivity), embedding bounds ⇒ place bounds.
+  - belyi `wp-height-theory`: C1/C3 (curve fields, places as DVRs, `ord`, residue fields,
+    charts, zeros/poles finite, `QbarPoint`, evaluation, field of definition, degree), the
+    fundamental identity `deg (t)_0 = deg (t)_∞ = [K : ℚ(t)]`.
+  - belyi `wp-height-theory-deriv`: C5 (derivations `derivAlong t`, chain rule,
+    `D_π(O_P) ⊆ O_P`, order formulas `e − 1`, `−e − 1`).
+  - belyi `wp-height-theory-p1belyi`: C9a (Mochizuki's Lemmas 2.1–2.4: the ℙ¹ case of
+    noncritical Belyi maps).
+  - in progress: C4 (Riemann), W6 (different bookkeeping), extension of places (C1 item 4).
