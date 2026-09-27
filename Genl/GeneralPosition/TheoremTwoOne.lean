@@ -27,8 +27,9 @@ The proof of (ii) ⇒ (i) proceeds in two steps, exactly as in loc. cit.:
    map `φ : X → ℙ` and a compactly bounded subset `K_V` to which statement (ii) applies;
    the displayed chain of BD-inequalities on p. 14 then bounds `ht_{ω_X}` on the failure
    locus `Ξ`, contradicting the unboundedness of the failure. The tolerance is
-   `ε' = ε / (1 + q (1 + ε))`, which satisfies `1 + ε' = (1 + ε)(1 - ε' q)` — the exact
-   form of the requirement `1 + ε' ≤ (1 + ε)(1 - ε' · deg E / deg ω_X)` of loc. cit.
+   `ε' = ε / (1 + q (1 + ε))`, which satisfies `1 + ε' = (1 + ε)(1 - ε' q)` — the
+   requirement `1 + ε' ≤ (1 + ε)(1 - ε' · deg E / deg ω_X)` of loc. cit., with
+   `deg E / deg ω_X` replaced by the number `q > deg E / deg ω_X` of the proof package.
 2. `statementI_of_divisorFree` reduces the general case to the divisor free case: for a
    hyperbolic `(X, D)`, the field `covering` of the proof package produces a covering
    `Y → X` ramified exactly over `D` with large ramification index; the case `D = ∅`
@@ -84,7 +85,7 @@ theorem le_of_statementII_ptEQ (A : T.ProofPackage) (hII : T.StatementII) {X : T
       simp only [Pi.add_apply, Pi.sub_apply, Pi.smul_apply, smul_eq_mul]
       ring
     have c6 : ε' • B.htE ≲[B.Ξ] (ε' * B.q) • T.htCan X := by
-      have h := B.htE_equiv.le.smul hε'.le
+      have h := B.htE_le.smul hε'.le
       rwa [smul_smul] at h
     have c8 := ((c1.trans c2).trans c3).trans c4
     rw [c5] at c8

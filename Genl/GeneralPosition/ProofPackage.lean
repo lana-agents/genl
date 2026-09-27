@@ -35,7 +35,8 @@ This file records these inputs as the two fields of the structure
   which the failure persists after dropping any bounded part, a noncritical Belyi map
   `φ : X → ℙ` mapping `Ξ` into a compactly bounded subset `K_V`, and the comparison
   (in)equalities of heights, log-differents and log-conductors along `φ` printed in the
-  displayed chain on p. 14, with `E := φ^{-1}(C)_red` and `q = deg E / deg ω_X`.
+  displayed chain on p. 14, with `E := φ^{-1}(C)_red` and a number `q > deg E / deg ω_X`
+  (see `BelyiDescent` for why `q = deg E / deg ω_X` itself cannot be used).
 
 Instantiating `ProofPackage` for the "true" height theory of curves over number fields
 amounts to formalising §1 of [mochizuki2010] together with the noncritical Belyi maps of
@@ -106,10 +107,21 @@ on p. 14 of [mochizuki2010], as (in)equalities of BD-classes on `Ξ`:
 - `logDiff_comp_le`: `log-diff_ℙ ∘ φ + log-cond_C ∘ φ ≲ log-diff_X + log-cond_E`, from
   Proposition 1.7 (i) applied to `φ` (with `e = 1`);
 - `logCondE_le`: `log-cond_E ≲ ht_E`, from Proposition 1.6;
-- `htE_equiv`: `ht_E ≈ q • ht_{ω_X}` with `q = deg E / deg ω_X > 0`.
+- `htE_le`: `ht_E ≲ q • ht_{ω_X}` for a real number `q > deg E / deg ω_X`.
 
 Here `ht_E` denotes a representative of the BD-class of heights associated to the line
-bundle `O_X(E)`, and `log-cond_E` the log-conductor of the pair `(X, E)`. -/
+bundle `O_X(E)`, and `log-cond_E` the log-conductor of the pair `(X, E)`.
+
+**On `htE_le`.** The chain printed on p. 14 of [mochizuki2010] uses
+`ε' · ht_E ≈ ε' · (deg E / deg ω_X) · ht_{ω_X}`. For genuine Weil heights this fails in
+general, even in the `≲` direction: `ht_E − (deg E / deg ω_X) · ht_{ω_X}` is (up to
+`O(1)`) the height attached to the degree `0` class `E − (deg E / deg ω_X) · K_X` of
+`Pic(X) ⊗ ℚ`, which is unbounded above and below on `X(ℚ̄)^{=d}` (it grows like the
+square root of `ht_{ω_X}`, by the Néron–Tate theory of the Jacobian) as soon as this class
+is not torsion. What does hold, by Proposition 1.4 (i), (ii), (iii) of loc. cit. (a line
+bundle of positive degree on a curve has a height bounded below), is `ht_E ≲ q · ht_{ω_X}`
+for every real `q > deg E / deg ω_X`. Since the proof only uses the upper bound
+(and `q > 0` is arbitrary there), the field records exactly this. -/
 structure BelyiDescent (X : T.Curve) (d : ℕ) (ε : ℝ) where
   /-- The subset `Ξ ⊆ X(ℚ̄)^{=d}` on which the inequality of statement (i) fails
   persistently. -/
@@ -127,9 +139,9 @@ structure BelyiDescent (X : T.Curve) (d : ℕ) (ε : ℝ) where
   htE : T.Pt X → ℝ
   /-- The log-conductor of the pair `(X, E)`. -/
   logCondE : T.Pt X → ℝ
-  /-- The ratio `q = deg E / deg ω_X`. -/
+  /-- A real number `q > deg E / deg ω_X` (for instance `deg E / deg ω_X + 1`). -/
   q : ℝ
-  /-- `deg E` and `deg ω_X` are positive. -/
+  /-- `q` is positive. -/
   q_pos : 0 < q
   /-- `Ξ` consists of points of degree exactly `d`. -/
   subset : Ξ ⊆ T.ptEQ X d
@@ -147,8 +159,9 @@ structure BelyiDescent (X : T.Curve) (d : ℕ) (ε : ℝ) where
     (T.logDiff T.tripod ∘ φ + T.logCond T.tripod ∘ φ) ≲[Ξ] (T.logDiff X + logCondE)
   /-- `log-cond_E ≲ ht_E` on `Ξ`, from Proposition 1.6 of [mochizuki2010]. -/
   logCondE_le : logCondE ≲[Ξ] htE
-  /-- `ht_E ≈ (deg E / deg ω_X) • ht_{ω_X}` on `Ξ`. -/
-  htE_equiv : htE ≈[Ξ] q • T.htCan X
+  /-- `ht_E ≲ q • ht_{ω_X}` on `Ξ`, from `deg E < q · deg ω_X` and
+  Proposition 1.4 (i), (ii), (iii) of [mochizuki2010]. -/
+  htE_le : htE ≲[Ξ] q • T.htCan X
 
 /-- The arithmetic-geometric inputs to the proof of the implication (ii) ⇒ (i) of
 Theorem 2.1 of [mochizuki2010]: the existence of the ramified coverings used in the

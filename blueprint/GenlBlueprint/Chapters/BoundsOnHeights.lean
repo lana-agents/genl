@@ -75,7 +75,10 @@ $`E = φ^{-1}(C)_{\mathrm{red}}`, the comparisons
 $`\mathrm{ht}_{ω_X} \approx \mathrm{ht}_{ω_ℙ(C)} ∘ φ - \mathrm{ht}_E`,
 $`\text{log-diff}_ℙ ∘ φ + \text{log-cond}_C ∘ φ \lesssim \text{log-diff}_X +
 \text{log-cond}_E`, $`\text{log-cond}_E \lesssim \mathrm{ht}_E` and
-$`\mathrm{ht}_E \approx (\deg E / \deg ω_X)\,\mathrm{ht}_{ω_X}` on $`Ξ`. Uses
+$`\mathrm{ht}_E \lesssim q\,\mathrm{ht}_{ω_X}` on $`Ξ` for a real $`q > \deg E / \deg ω_X`
+(the printed $`\mathrm{ht}_E \approx (\deg E / \deg ω_X)\,\mathrm{ht}_{ω_X}` fails for
+genuine heights when $`E - (\deg E/\deg ω_X) K_X` is not torsion in
+$`\mathrm{Pic}(X) ⊗ ℚ`; only the upper bound with $`q` is used). Uses
 {uses "compactly_bounded_subset"}[], {uses "heights_basic_properties"}[],
 {uses "conductor_bounded_by_height"}[] and {uses "conductors_and_log_differents"}[];
 the set $`Ξ` is produced by a compactness argument in the local points at the places of
@@ -95,7 +98,7 @@ divisor free case to $`Y`, the comparisons along $`π` yield statement (i) for
 $`(X, D)` since $`(1 + ε')^2 = 1 + ε`. The divisor free case on $`X(\overline{ℚ})^{=d}`
 is proved by contradiction: if the inequality fails, `belyi_descent` produces $`Ξ`,
 $`φ` and $`\mathcal{K}_V`; applying statement (ii) to $`\mathcal{K}_V` with the
-tolerance $`ε' = ε / (1 + q(1 + ε))`, $`q = \deg E / \deg ω_X`, which satisfies
+tolerance $`ε' = ε / (1 + q(1 + ε))`, $`q > \deg E / \deg ω_X`, which satisfies
 $`1 + ε' = (1 + ε)(1 - ε' q)`, the displayed chain of BD-inequalities on p. 14 of the
 paper bounds $`\mathrm{ht}_{ω_X}` on $`Ξ` by
 $`(1 + ε)\,\text{log-diff}_X` up to a constant, contradicting the unboundedness of the
