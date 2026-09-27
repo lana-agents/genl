@@ -176,9 +176,9 @@ Estimates are Lean lines (proof + statements), `✓` = done.
 | C6 | Riemann–Hurwitz for `K ⊆ L` (char 0), `e_Q = v_Q(π_P)`, `Σ_{Q∣P} e_Q f_Q = [L:K]` | C5 | 800 |
 | C7 | Belyi functions, `E_φ`, `K_X + E_φ ~ φ^*[∞]` | C6 | 400 |
 | C8 | Kummer–Fermat covers `K(u,v)`: unramified off `E_φ`, `e ≥ N/deg φ` over `E_φ`, hyperbolicity and degree ratio | C6,C7 | 1200 |
-| C9a | ℙ¹-level noncritical Belyi lemma: finite `A, B ⊂ ℙ¹(ℚ̄)` disjoint, Galois-stable over `k` ⇒ `g ∈ ℚ(T)` with `g(A) ⊆ {0,1,∞}`, crit. values in `{0,1,∞}`, `g(B) ∩ {0,1,∞} = ∅` (reuses `Belyi/Polynomial/*`) | C1 | 2500 |
-| C9b | a function `t` with `t(S) ∩ t(Ram t) = ∅` for a finite set of places `S` (generic linear combination; uses C4/C5) | C4,C5 | 1500 |
-| C9 | noncritical Belyi maps: `∀ S` finite, `∃ φ` Belyi with `S ∩ E_φ = ∅` | C9a,C9b,C7 | 500 |
+| C9a | ℙ¹ part of [NCB] (Mochizuki, *Noncritical Belyi maps*, 2004) Lemmas 2.1–2.4: `S ⊆ ℙ¹(ℚ̄)` finite Galois-stable, `τ ∈ ℙ¹(ℚ) ∖ S` ⇒ a composite `H` of rational Möbius maps and rational polynomials with `H(S) ⊆ {0,1,∞}`, `H(τ) ∉ {0,1,∞}`, `H` unramified over `ℙ¹ ∖ {0,1,∞}`. Genericity is avoided: all choices are made by archimedean size estimates (`τ` made huge, `x^m(x−1)^n` monotone on `x > 1`) | Mathlib | 2500 |
+| C9b | [NCB] Thm 2.5, curve step: for a finite set `T` of places, enlarge `T` so that `D := Σ_{t∈T} t` has large degree; by Riemann (C4) pick `f ∈ L(D) ∖ ⋃_t L(D − t)`; then `ψ := 1/f` has `(ψ)_0 = D`, so `ψ(T) = 0` with `ψ` unramified over `0`. Branch values of `ψ` form a Galois-stable finite set not containing `0` | C4,C6 | 800 |
+| C9 | noncritical Belyi maps: `∀ T` finite set of places, `∃ φ` Belyi with `T ∩ E_φ = ∅` (`φ = H(ψ)`; ramification multiplicative in the tower `K ⊇ ℚ(ψ) ⊇ ℚ(φ)`) | C9a,C9b,C7 | 600 |
 | C11 | bridge to belyi's scheme curves (`X ↦ X.functionField`, closed points ↔ places) | C1 | 1500 (optional) |
 
 ### heights — absolute heights and the machine on curves
@@ -224,8 +224,8 @@ Estimates are Lean lines (proof + statements), `✓` = done.
 
 Critical path C1→C2→C4→(W2,W3,W4)→C5→C6→C8→W7b→G2 and C9a/C9b→C9→W8→G3→I2.
 Total ≈ 30–36k lines on the ABC path (≈ 38–46k with the optional nodes). The largest risks
-are C4 (Riemann's theorem from scratch), C9 (the noncritical Belyi construction, whose
-genericity arguments are fiddly), and C5 (derivations on function fields). A realistic
+are C4 (Riemann's theorem from scratch), C5 (derivations on function fields) and C9a (many
+small real-inequality lemmas; the construction itself is explicit, following [NCB]). A realistic
 schedule with one lead and parallel sub-agents is 4–8 weeks of continuous work.
 
 ## 6. Progress log
