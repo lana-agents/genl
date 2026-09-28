@@ -19,7 +19,7 @@ rev = "v4.32.0"
 # brings lana-agents/belyi (curves as function fields).
 [[require]]
 name = "heights"
-git = "https://github.com/lana-agents/heights.git"
+git = "https://github.com/lana-agents/heights"
 rev = "721496ca4c158e511d25d8ccf6bfe8503eda73c1"
 
 [[lean_lib]]
