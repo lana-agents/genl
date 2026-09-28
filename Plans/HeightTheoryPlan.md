@@ -248,3 +248,19 @@ schedule with one lead and parallel sub-agents is 4–8 weeks of continuous work
   - belyi `wp-height-theory-p1belyi`: C9a (Mochizuki's Lemmas 2.1–2.4: the ℙ¹ case of
     noncritical Belyi maps).
   - in progress: C4 (Riemann), W6 (different bookkeeping), extension of places (C1 item 4).
+* 2026-09-28 (day): **the ABC path is complete.**
+  - belyi `wp-height-theory` (merged: C4 Riemann, coordinate rings, canonical divisors,
+    Riemann–Hurwitz, the Belyi relation, C9 noncritical Belyi maps `exists_isBelyi_notMem_belyiCusps`,
+    tripod, C8 Kummer–Fermat coverings: ramification `≥ N / |ord|` over the cusps, unramified off
+    the cusps, `ℚ(y) = ℚ(x)(u(y), v(y))`).
+  - heights `wp-height-theory-curve`: W3/W4 (divisor heights, linear equivalence, positivity,
+    `divHeight_le_mul`), functoriality under finite maps, Prop 1.6 (`logCondOf_le_divHeight`),
+    Remark 1.5.1 (model change), W6/W7 (log-diff + log-cond tower inequality, Kummer
+    discriminant bound in the form `logDisc_le_of_eq_adjoin`), W8d (`exists_subseq_bounded`,
+    now also giving `φ(x_n) ≠ 0, 1`).
+  - genl `wp-height-theory`: `Genl.Curves.theory` (G1), `nonempty_belyiDescent` (G3),
+    `nonempty_covering` (G2: identity for `D = ∅`, Kummer–Fermat covering for `D` = cusps of a
+    Belyi function), `Genl.Curves.proofPackage`, `Genl.Curves.statementII_implies_statementI`.
+  - iut `wp-height-theory`: `Iut.Tripod.statementI_of_statementII` (I1 dictionary + I2) and
+    `Iut.Tripod.classicalABC_of_variant` (the conditional headline without `hII_I`).
+  - Open (off the ABC path): F1 (arbitrary reduced `D`).
