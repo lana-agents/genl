@@ -1,4 +1,6 @@
 import Genl.Curves.BelyiDescent
+import Genl.Curves.Covering
+import Genl.Curves.ProofPackage
 import Genl.Curves.Theory
 import Genl.GeneralPosition.HeightTheory
 import Genl.GeneralPosition.ProofPackage

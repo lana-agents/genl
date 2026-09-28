@@ -246,4 +246,22 @@ noncomputable def theory : HeightTheory.{0} where
   CBS := CBSData
   cbsSet := CBSData.set
 
+@[simp] theorem theory_htCan (X : Curve) (x : X.Pt) :
+    theory.htCan X x = divHeight X.logCanon x.1 := rfl
+
+@[simp] theorem theory_logDiff (X : Curve) (x : X.Pt) :
+    theory.logDiff X x = Heights.Curve.logDiff x.1 := rfl
+
+theorem theory_logCond_of_nonempty (X : Curve) (hD : X.D.Nonempty) (x : X.Pt) :
+    theory.logCond X x = logCondOf X.G x.1 := by
+  classical
+  change (if X.D = ∅ then 0 else logCondOf X.G x.1) = _
+  rw [if_neg hD.ne_empty]
+
+theorem theory_logCond_of_eq_empty (X : Curve) (hD : X.D = ∅) (x : X.Pt) :
+    theory.logCond X x = 0 := by
+  classical
+  change (if X.D = ∅ then 0 else logCondOf X.G x.1) = _
+  rw [if_pos hD]
+
 end Genl.Curves
