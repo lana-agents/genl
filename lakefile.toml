@@ -16,10 +16,11 @@ scope = "leanprover-community"
 rev = "v4.32.0"
 
 # Heights on curves over number fields (the genuine height theory, Genl.Curves), which also
-# brings lana-agents/belyi (curves as function fields). Development pin: local path.
+# brings lana-agents/belyi (curves as function fields).
 [[require]]
 name = "heights"
-path = "../heights-wpht-curve"
+git = "https://github.com/lana-agents/heights.git"
+rev = "721496ca4c158e511d25d8ccf6bfe8503eda73c1"
 
 [[lean_lib]]
 name = "Genl"
