@@ -90,7 +90,7 @@ noncomputable def divD : Divisor X.K := ∑ P ∈ X.D, Finsupp.single P 1
 noncomputable def logCanon : Divisor X.K := X.canon + X.divD
 
 /-- The points of `U_X = X ∖ D`. -/
-def Pt : Type := {x : QbarPoint X.K // x.P ∉ X.D}
+abbrev Pt : Type := {x : QbarPoint X.K // x.P ∉ X.D}
 
 end Curve
 
@@ -140,7 +140,7 @@ instance : IsCurveField tripodK := tgen_isRationalGenerator.isCurveField
 
 open Classical in
 /-- **The tripod** `(ℙ¹_ℚ, {0, 1, ∞})` with the model `ℚ[λ, λ⁻¹, (1 − λ)⁻¹]`. -/
-noncomputable def tripod : Curve where
+@[reducible] noncomputable def tripod : Curve where
   K := tripodK
   D := tripodPlaces tgen
   G := {tgen, tgen⁻¹, (1 - tgen)⁻¹}

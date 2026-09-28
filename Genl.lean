@@ -1,3 +1,5 @@
+import Genl.Curves.BelyiDescent
+import Genl.Curves.Theory
 import Genl.GeneralPosition.HeightTheory
 import Genl.GeneralPosition.ProofPackage
 import Genl.GeneralPosition.TheoremTwoOne
