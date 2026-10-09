@@ -21,7 +21,7 @@ together with a package of arithmetic-geometric inputs (`Genl.HeightTheory.Proof
 the outputs of §1 of the paper and of the theory of noncritical Belyi maps that the
 printed proof consumes). The formal proof follows the argument on pp. 13–14 of the paper
 step by step; instantiating the height formalism and the proof package is tracked in
-`Plans/HeightTheoryPlan.md`.
+`Plans/`.
 
 ---
 
