@@ -1,3 +1,8 @@
+/-
+Copyright (c) 2026 LANA Project. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: LANA Project
+-/
 import Genl.Curves.BelyiDescent
 import Genl.Curves.Covering
 import Genl.Curves.ProofPackage

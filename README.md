@@ -112,6 +112,10 @@ theorem `Iut.classicalABC_of_variant` uses it.
   beyond `propext`, `Quot.sound` and `Classical.choice`.
 * `paper/mochizuki-mjou52.pdf` — the paper.
 
+## License
+
+License: Apache 2.0 (see `LICENSE`).
+
 ## Building
 
 ```bash
