@@ -240,7 +240,6 @@ noncomputable def theory : HeightTheory.{0} where
   logCond X x := if X.D = ∅ then 0 else logCondOf X.G x.1
   tripod := tripod
   hyperbolic_tripod := by
-    change 0 < tripod.logCanon.deg
     rw [deg_logCanon_tripod]
     exact one_pos
   CBS := CBSData

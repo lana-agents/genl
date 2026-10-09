@@ -20,8 +20,8 @@ abstract *height formalism* (`Genl.HeightTheory`, the data needed to state the t
 together with a package of arithmetic-geometric inputs (`Genl.HeightTheory.ProofPackage`,
 the outputs of §1 of the paper and of the theory of noncritical Belyi maps that the
 printed proof consumes). The formal proof follows the argument on pp. 13–14 of the paper
-step by step; instantiating the height formalism and the proof package is tracked in the
-blueprint.
+step by step; instantiating the height formalism and the proof package is tracked in
+`Plans/HeightTheoryPlan.md`.
 
 ---
 
@@ -101,10 +101,6 @@ theorem `Iut.classicalABC_of_variant` uses it.
   * `ProofPackage.lean` — the arithmetic-geometric inputs to the proof
     (ramified coverings; noncritical Belyi maps plus compactness);
   * `TheoremTwoOne.lean` — the proofs of (ii) ⇒ (i), (i) ⇒ (ii) and the equivalence.
-* `blueprint/` — a [verso-blueprint](https://github.com/leanprover/verso-blueprint)
-  project covering the entire paper (§1–§4), with dependency graph and progress
-  tracking. Build with `cd blueprint && lake exe vbp build`; the site is written to
-  `blueprint/_out/site/html-multi/`.
 * `Challenge.lean`, `Solution.lean`, `config.json` — a challenge/solution pair for
   [leanprover/comparator](https://github.com/leanprover/comparator). The challenge is
   the implication (ii) ⇒ (i) of Theorem 2.1 (`theorem_2_1_ii_implies_i`); the solution

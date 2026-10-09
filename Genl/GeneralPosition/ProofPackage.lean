@@ -40,7 +40,7 @@ This file records these inputs as the two fields of the structure
 
 Instantiating `ProofPackage` for the "true" height theory of curves over number fields
 amounts to formalising §1 of [mochizuki2010] together with the noncritical Belyi maps of
-[mochizuki2004]; this is tracked in the project blueprint.
+[mochizuki2004]; this is tracked in `Plans/HeightTheoryPlan.md`.
 
 ## References
 
