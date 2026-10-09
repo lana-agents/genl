@@ -23,6 +23,70 @@ printed proof consumes). The formal proof follows the argument on pp. 13–14 of
 step by step; instantiating the height formalism and the proof package is tracked in the
 blueprint.
 
+---
+
+## lana-agents fork
+
+*This section describes the fork [lana-agents/genl](https://github.com/lana-agents/genl)
+(branch `master`); everything outside it is the upstream README of
+[LANA-Project/genl](https://github.com/LANA-Project/genl).*
+
+The fork instantiates the abstract height formalism and its proof package with the genuine
+height theory of curves over number fields, so that Theorem 2.1 (ii) ⇒ (i) becomes a theorem
+about actual Weil heights, log-differents and log-conductors. It is a dependency of the
+IUT/ABC programme [lana-agents/iut](https://github.com/lana-agents/iut), which pins
+`ea2846c`.
+
+### What the fork adds
+
+* **A correction to the interface** (`Genl/GeneralPosition/ProofPackage.lean`). The field
+  `BelyiDescent.htE_equiv : ht_E ≈ (deg E / deg ω_X) • ht_{ω_X}`, read off the chain on p. 14
+  of the paper, is false for genuine Weil heights (the difference is the height of a degree
+  zero class of `Pic(X) ⊗ ℚ`, unbounded in both directions unless the class is torsion). It is
+  replaced by `BelyiDescent.htE_le : ht_E ≲ q • ht_{ω_X}` for a real `q > deg E / deg ω_X`,
+  which is all the proof uses; `TheoremTwoOne.lean` changes only in that one step.
+* **`Genl.Curves.theory : HeightTheory`** (`Genl/Curves/Theory.lean`). Curves are function
+  fields inside `AlgebraicClosure (RatFunc ℚ)` (`Genl.Curves.Curve`), with a reduced divisor `D`
+  that is either empty or the set of cusps of a Belyi function (this class contains the tripod
+  `Genl.Curves.tripod` and all proper curves). Points are `ℚ̄`-points off `D`; `ht_{ω_X(D)}` is
+  the Weil height of `K_X + D`; log-different and log-conductor come from
+  [lana-agents/heights](https://github.com/lana-agents/heights); compactly bounded subsets of the
+  tripod are given by `Genl.Curves.CBSData`.
+* **The proof package for this theory**: `Genl.Curves.proofPackage : theory.ProofPackage`,
+  built from
+  * `Genl.Curves.nonempty_covering` (`Genl/Curves/Covering.lean`): the identity if `D = ∅`,
+    otherwise a Kummer–Fermat covering `u^N = φ`, `v^N = 1 − φ`, via Riemann–Hurwitz and the
+    Kummer discriminant bound;
+  * `Genl.Curves.nonempty_belyiDescent` (`Genl/Curves/BelyiDescent.lean`): noncritical Belyi
+    maps (from [lana-agents/belyi](https://github.com/lana-agents/belyi)), the compactness
+    argument at `2` and `∞`, the Belyi relation for heights, the log-diff + log-cond tower
+    inequality, and Proposition 1.6 for the cusp divisor.
+* **`Genl.Curves.statementII_implies_statementI`** (`Genl/Curves/ProofPackage.lean`):
+  Theorem 2.1 (ii) ⇒ (i) for `Genl.Curves.theory`, with no hypothesis besides statement (ii).
+* `Plans/HeightTheoryPlan.md`: design, lemma DAG and progress log of this work.
+* `lakefile.toml` requires `heights` by git (`lana-agents/heights` at `721496c`), which in turn
+  brings `lana-agents/belyi`.
+
+### Status
+
+* `Genl.Curves.statementII_implies_statementI` and
+  `Genl.HeightTheory.statementII_implies_statementI` are proved: there is no `sorry` in
+  `Genl/` (the only one is the intended statement in `Challenge.lean`), none in the pinned
+  `heights` (`721496c`, apart from its own `Comparator/Challenge.lean`) or `belyi`
+  (`9ce4d3f`), and `#print axioms` reports only `propext`, `Classical.choice`, `Quot.sound`.
+* Open, and not needed by iut: curves `(X, D)` with an arbitrary reduced divisor `D` (not the
+  cusps of a Belyi function); this needs coverings with prescribed ramification over arbitrary
+  `D` (node F1 of the plan).
+
+### Use in iut
+
+`Iut.Tripod.statementI_of_statementII` (`Iut/Tripod/GeneralPosition.lean`) compares iut's
+tripod with `Genl.Curves.tripod`, transports statement (ii) to `Genl.Curves.theory`, applies
+`Genl.Curves.statementII_implies_statementI` and transports statement (i) back. The main
+theorem `Iut.classicalABC_of_variant` uses it.
+
+---
+
 ## Layout
 
 * `Genl/Mathlib/` — basic ingredients intended for eventual upstreaming into Mathlib:
