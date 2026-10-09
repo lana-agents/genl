@@ -237,6 +237,8 @@ theorem nonempty_pt_of_isBelyi (X : Curve) {φ : X.K} (hφ : IsBelyi φ)
   exact notMem_belyiCusps_of_eval x hφm (by rw [hval']; exact h2) (by rw [hval']; exact h2') hx'
 
 set_option maxHeartbeats 800000 in
+-- The construction of the covering and the Riemann–Hurwitz estimate below elaborate in one
+-- proof, which exceeds the default heartbeat limit.
 open Classical in
 /-- **The first paragraph of the proof of [GenEll], Theorem 2.1** for the height theory of
 curves over number fields: coverings ramified over the divisor. -/
@@ -264,7 +266,8 @@ theorem nonempty_covering (X : Curve) (hX : theory.Hyperbolic X) (d : ℕ) (ε' 
       linarith [Nat.le_ceil ((1 + ε') * δ / (ε' * h))]
     rw [div_lt_iff₀ (by positivity)] at h1
     linarith
-  have he1 : (1 : ℝ) ≤ e := by rw [he]; push_cast; linarith [Nat.cast_nonneg (α := ℝ) ⌈(1 + ε') * δ / (ε' * h)⌉₊]
+  have he1 : (1 : ℝ) ≤ e := by
+    rw [he]; push_cast; linarith [Nat.cast_nonneg (α := ℝ) ⌈(1 + ε') * δ / (ε' * h)⌉₊]
   set M : ℕ := ∑ P ∈ X.D, ((P.ord φ).natAbs + (P.ord (φ - 1)).natAbs) + 1 with hM
   have hMle : ∀ P ∈ X.D, |P.ord φ| < M ∧ |P.ord (φ - 1)| < M := by
     intro P hP
@@ -278,7 +281,8 @@ theorem nonempty_covering (X : Curve) (hX : theory.Hyperbolic X) (d : ℕ) (ε' 
     · rw [Int.abs_eq_natAbs]; exact_mod_cast h2
     · rw [Int.abs_eq_natAbs]; exact_mod_cast h3
   set N : ℕ := e * M with hNdef
-  have hN : 0 < N := Nat.mul_pos (by rw [he]; exact Nat.succ_pos _) (by rw [hM]; exact Nat.succ_pos _)
+  have hN : 0 < N :=
+    Nat.mul_pos (by rw [he]; exact Nat.succ_pos _) (by rw [hM]; exact Nat.succ_pos _)
   -- the covering
   set Y := fermatCurve X φ hN with hY
   have hu := fermatU'_pow X φ hN
@@ -370,7 +374,8 @@ theorem nonempty_covering (X : Curve) (hX : theory.Hyperbolic X) (d : ℕ) (ε' 
       have : {Q : Place Y.K | Q.restrict X.K ∈ X.D} = ⋃ P ∈ X.D, {Q | Q.restrict X.K = P} := by
         ext Q; simp
       rw [this]
-      exact Set.Finite.biUnion X.D.finite_toSet fun P _ => Place.finite_setOf_restrict_eq X.K (L := Y.K) P
+      exact Set.Finite.biUnion X.D.finite_toSet fun P _ =>
+        Place.finite_setOf_restrict_eq X.K (L := Y.K) P
     exact ((QbarPoint.finite_setOf_mem hT).preimage Subtype.val_injective.injOn).subset
       fun y hy => hy
   -- regularity of the model and of `φ, φ⁻¹, (1 - φ)⁻¹` off `D`
