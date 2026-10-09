@@ -1,4 +1,10 @@
 /-
+Copyright (c) 2026 LANA Project. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: LANA Project
+-/
+
+/-
 Solution file for `leanprover/comparator`, proving the challenge stated in
 `Challenge.lean`: the implication (ii) ⇒ (i) of Theorem 2.1 of
 
