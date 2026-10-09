@@ -1,0 +1,149 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+# formalization.yaml (v0.4): repo-root metadata for this formalization,
+# following https://github.com/mathlib-initiative/formalization.yaml
+
+version: "v0.4"
+
+project:
+  name: "genl"
+  description: >-
+    A Lean 4 / Mathlib formalization of Theorem 2.1 of Mochizuki's "Arithmetic elliptic curves in
+    general position": the implication (ii) ⇒ (i) from the ABC conjecture for rational points of
+    bounded degree of the tripod ℙ¹ ∖ {0, 1, ∞} lying in a compactly bounded subset to the
+    Effective Mordell/ABC/Vojta conjecture for rational points of bounded degree on hyperbolic
+    curves over number fields. The implication is proved for an abstract height formalism with a
+    package of arithmetic-geometric inputs (Genl.HeightTheory, Genl.HeightTheory.ProofPackage),
+    following the argument on pp. 13-14 of the paper, together with the easy converse and the
+    equivalence. The lana-agents fork instantiates the formalism and its proof package with the
+    genuine height theory of curves over number fields (Weil heights, log-differents and
+    log-conductors from lana-agents/heights; noncritical Belyi maps from lana-agents/belyi), for
+    curves whose divisor is empty or the cusp set of a Belyi function, and proves (ii) ⇒ (i) for
+    it without further hypotheses. A comparator challenge/solution pair states and proves the
+    abstract implication.
+  authors:
+    - "Claude (Anthropic)"
+    - "Christian Merten"
+    - "LANA Project"
+  responsible_maintainers:
+    - "Christian Merten"
+  license: "Apache-2.0"
+
+sources:
+  - title: "Arithmetic elliptic curves in general position"
+    authors: ["Shinichi Mochizuki"]
+    type: "article"
+    location: "Math. J. Okayama Univ. 52 (2010), 1-28; Theorem 2.1 and its proof on pp. 13-14"
+    relationship: "formalizes"
+    note: >-
+      The proof of (ii) ⇒ (i) follows the printed argument step by step. One field of the proof
+      package read off from p. 14 (htE_equiv) is false for genuine Weil heights and is replaced
+      by the inequality htE_le, which is all the proof uses (see fidelity.divergences).
+    author_endorsement: "not-contacted"
+
+related_formalizations:
+  - id: "https://github.com/LANA-Project/genl"
+    relationship: "builds-on"
+    note: "Upstream repository of this fork (the abstract formalism and Theorem 2.1)."
+  - id: "https://github.com/lana-agents/heights"
+    relationship: "builds-on"
+    note: "Heights on curves over number fields, log-differents and log-conductors."
+  - id: "https://github.com/lana-agents/belyi"
+    relationship: "builds-on"
+    note: "Curves as function fields and noncritical Belyi maps (through heights)."
+  - id: "https://github.com/lana-agents/iut"
+    relationship: "other"
+    note: >-
+      Downstream consumer: Iut.Tripod.statementI_of_statementII applies
+      Genl.Curves.statementII_implies_statementI.
+
+classification:
+  arxiv: ["math.NT", "math.AG"]
+  msc2020: ["11G50", "11D75", "14G40", "14H25"]
+
+status:
+  scope: >-
+    Theorem 2.1 (ii) ⇒ (i), (i) ⇒ (ii) and the equivalence for an abstract height formalism
+    with its proof package, and (ii) ⇒ (i) for the genuine height theory of curves over number
+    fields (curves whose divisor is empty or the cusps of a Belyi function), proved from Lean's
+    three standard axioms. Not covered: curves with an arbitrary reduced divisor. The only
+    `sorry` in the repository is the intended placeholder in the comparator file
+    Challenge.lean, whose statement is proved in Solution.lean; the library Genl has none.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: ["propext", "Classical.choice", "Quot.sound"]
+  main_results:
+    - declaration: "Genl.Curves.statementII_implies_statementI"
+      file: "Genl/Curves/ProofPackage.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      literature_dependencies: []
+    - declaration: "Genl.HeightTheory.statementII_implies_statementI"
+      file: "Genl/GeneralPosition/TheoremTwoOne.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      literature_dependencies: []
+    - declaration: "Genl.HeightTheory.statementI_iff_statementII"
+      file: "Genl/GeneralPosition/TheoremTwoOne.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      literature_dependencies: []
+    - declaration: "theorem_2_1_ii_implies_i"
+      file: "Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "config.json"
+      literature_dependencies: []
+
+automation:
+  methods:
+    - method: "agent"
+      models: ["claude-fable-5", "claude-opus-5-5"]
+      framework: "Claude Code"
+      tool_setup: >-
+        orchestra for running the agents, taxis for project management, and Claude (Claude Code) as the
+        coding agent; Lean/Lake builds with `lake build --wfail`.
+      prompting_notes: >-
+        Human input consisted of high-level task descriptions and scope decisions.
+  notes: >-
+    Agents were run with orchestra; project management (issues, status) was done in taxis;
+    Claude was the coding agent.
+
+fidelity:
+  divergences: >-
+    Theorem 2.1 is proved relative to an abstract height formalism (Genl.HeightTheory) and a
+    package of arithmetic-geometric inputs (Genl.HeightTheory.ProofPackage) that collects the
+    outputs of §1 of the paper and of the theory of noncritical Belyi maps. The field
+    BelyiDescent.htE_equiv (ht_E ≈ (deg E / deg ω_X) • ht_{ω_X}), read off from p. 14, is false
+    for genuine Weil heights and is replaced by BelyiDescent.htE_le (ht_E ≲ q • ht_{ω_X} for a
+    real q > deg E / deg ω_X), which is all the proof uses. In the concrete instance
+    Genl.Curves.theory, curves are function fields inside AlgebraicClosure (RatFunc ℚ), and the
+    divisor D is required to be empty or the set of cusps of a Belyi function.
+
+review:
+  status: "agent-reviewed"
+  reviewers: ["Claude (Anthropic)"]
+  notes: >-
+    The formalization has only been reviewed by Claude; it has not been reviewed by a human.
+    All results are machine-checked by the Lean kernel (axioms as listed under status; checked
+    with `#print axioms` on a built checkout with the same Lean sources as this revision, and for
+    theorem_2_1_ii_implies_i by re-elaborating the body of Solution.lean against it).
+
+alignment:
+  namespace: "Genl"
+  statements:
+    - source: "Mochizuki, Arithmetic elliptic curves in general position, Theorem 2.1, (ii) ⇒ (i)"
+      lean: "Genl.HeightTheory.statementII_implies_statementI"
+      module: "Genl/GeneralPosition/TheoremTwoOne.lean"
+      status: "proved"
+      note: "For an abstract height formalism with a proof package."
+    - source: "Mochizuki, Arithmetic elliptic curves in general position, Theorem 2.1 (equivalence)"
+      lean: "Genl.HeightTheory.statementI_iff_statementII"
+      module: "Genl/GeneralPosition/TheoremTwoOne.lean"
+      status: "proved"
+    - source: "Mochizuki, Theorem 2.1, (ii) ⇒ (i), for genuine heights of curves over number fields"
+      lean: "Genl.Curves.statementII_implies_statementI"
+      module: "Genl/Curves/ProofPackage.lean"
+      status: "proved"
+      note: "Divisor D empty or the cusps of a Belyi function."
+
+acknowledgements: "Built on Mathlib (Apache-2.0)."
