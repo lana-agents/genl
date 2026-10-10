@@ -64,7 +64,7 @@ IUT/ABC programme [lana-agents/iut](https://github.com/lana-agents/iut), which p
 * **`Genl.Curves.statementII_implies_statementI`** (`Genl/Curves/ProofPackage.lean`):
   Theorem 2.1 (ii) ⇒ (i) for `Genl.Curves.theory`, with no hypothesis besides statement (ii).
 * `Plans/HeightTheoryPlan.md`: design, lemma DAG and progress log of this work.
-* `lakefile.toml` requires `heights` by git (`lana-agents/heights` at `721496c`), which in turn
+* `lakefile.toml` requires `heights` by git (`lana-agents/heights` at `f4379db`), which in turn
   brings `lana-agents/belyi`.
 
 ### Status
@@ -72,8 +72,8 @@ IUT/ABC programme [lana-agents/iut](https://github.com/lana-agents/iut), which p
 * `Genl.Curves.statementII_implies_statementI` and
   `Genl.HeightTheory.statementII_implies_statementI` are proved: there is no `sorry` in
   `Genl/` (the only one is the intended statement in `Challenge.lean`), none in the pinned
-  `heights` (`721496c`, apart from its own `Comparator/Challenge.lean`) or `belyi`
-  (`9ce4d3f`), and `#print axioms` reports only `propext`, `Classical.choice`, `Quot.sound`.
+  `heights` (`f4379db`, apart from its own `Comparator/Challenge.lean`) or `belyi`
+  (`1d84db9`), and `#print axioms` reports only `propext`, `Classical.choice`, `Quot.sound`.
 * Open, and not needed by iut: curves `(X, D)` with an arbitrary reduced divisor `D` (not the
   cusps of a Belyi function); this needs coverings with prescribed ramification over arbitrary
   `D` (node F1 of the plan).

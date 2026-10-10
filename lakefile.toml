@@ -20,7 +20,7 @@ rev = "v4.32.0"
 [[require]]
 name = "heights"
 git = "https://github.com/lana-agents/heights"
-rev = "721496ca4c158e511d25d8ccf6bfe8503eda73c1"
+rev = "f4379dbccc8cdc4faa894a236d5581a6a635c5b5"
 
 [[lean_lib]]
 name = "Genl"
